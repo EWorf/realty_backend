@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.propertymanagement.dao.ManagerMapper">
+  <resultMap id="BaseResultMap" type="com.example.propertymanagement.entity.Manager">
+    <id column="manager_id" jdbcType="INTEGER" property="managerId" />
+    <result column=" manager_name" jdbcType="VARCHAR" property="managerName" />
+    <result column="manager_password" jdbcType="VARCHAR" property="managerPassword" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from manager
+    where manager_id = #{managerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.propertymanagement.entity.Manager">
+    insert into manager (manager_id, " manager_name", manager_password
+      )
+    values (#{managerId,jdbcType=INTEGER}, #{managerName,jdbcType=VARCHAR}, #{managerPassword,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.propertymanagement.entity.Manager">
+    update manager
+    set " manager_name" = #{managerName,jdbcType=VARCHAR},
+      manager_password = #{managerPassword,jdbcType=VARCHAR}
+    where manager_id = #{managerId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select manager_id, " manager_name", manager_password
+    from manager
+    where manager_id = #{managerId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select manager_id, " manager_name", manager_password
+    from manager
+  </select>
+</mapper>
